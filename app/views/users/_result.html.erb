@@ -1,0 +1,14 @@
+<div class="col-sm-6 noleftpadding">
+    <%= render 'layouts/messages' %>
+</div>
+
+
+<% if @stock %>
+    <div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Symbol: </strong><%= @stock.ticker %></li>
+        <li class="list-group-item"><strong>Name: </strong><%= @stock.name %></li>
+        <li class="list-group-item"><strong>Price: </strong><%= @stock.last_price %></li>
+    </ul>
+    </div>
+<% end %>
