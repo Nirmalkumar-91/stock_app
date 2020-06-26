@@ -15,6 +15,11 @@
         </div>
     <% end %>
 </div>
-<div id="results">
-
+<div id="results" class="error_msg">
 </div>
+
+<% if !@tracked_stocks.empty? %>
+    <%= render 'stocks/list' %>
+<% else %>
+    <%=  'You are currently not tracking any stocks' %>
+<% end %>
