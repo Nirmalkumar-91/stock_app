@@ -14,7 +14,7 @@
         <% else %>
             <li class="list-group-item">
                 You are already tracking
-                <% if !current_user.under_stock_limit? %>
+                <% if !current_user.under_stock_limit? && !current_user.stock_alredy_tracked?(@stock.ticker) %>
                     10 stocks
                 <% end %>
                 <% if current_user.stock_alredy_tracked?(@stock.ticker) %>

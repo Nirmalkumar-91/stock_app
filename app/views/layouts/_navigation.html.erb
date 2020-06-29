@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
+  
     <%= link_to 'FinanceTracker', root_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -11,14 +11,16 @@
             <%= link_to 'My Portfolio', my_portfolio_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <%= link_to 'Friends', my_friends_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
+              <%= fa_icon 'user' %> Profile
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
+              <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile
+              <% end %>
               <a class="dropdown-item" href="#">Another action</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
@@ -26,6 +28,11 @@
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mr-4">
+          <li class="nav-item">
+          <i class="fa fa-user" aria-hidden="true"></i> <%= current_user.full_name %>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -40,5 +47,5 @@
         </ul>
       </div>
     <% end %> 
-  </div>
+  
 </nav>
