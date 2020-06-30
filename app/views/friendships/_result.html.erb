@@ -1,0 +1,24 @@
+<div class="col-sm-6 noleftpadding">
+    <%= render 'layouts/messages' %>
+</div>
+
+<div class="row mb-2">
+	<% if @search %>
+		<% @search.each do |search| %>
+			<div class="col-sm-6 mb-3">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Name: <%= search.full_name %></h5>
+						<p class="card-text"><strong>Email: </strong><%= search.email %></p>
+						<%= link_to 'View Profile', '#', class: "btn btn-success" %>
+						<% if current_user.already_friend?(search.id) %>
+							<%= ' You are friends' %>
+						<% else %>
+							<%= link_to 'Follow friend?', friendships_path(friend: search), class: "btn btn-success", method: :post %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	<% end %>	
+</div>

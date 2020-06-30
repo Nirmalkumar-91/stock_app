@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'search_stock', to: 'stocks#search'
   get 'my_friends', to: 'friendships#my_friends'
-  resources :friendships, only: [:destroy]
+  get 'search_friends', to: 'friendships#search'
+  resources :friendships, only: [:destroy, :create]
 end
