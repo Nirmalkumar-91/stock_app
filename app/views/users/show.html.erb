@@ -1,0 +1,22 @@
+<h2><%= "#{@user.full_name} Profile" %> </h2>
+
+<div class="card col-sm-6 pl-0">
+    <div class="card-body">
+        <strong>Name: </strong><%= @user.full_name %>  <strong>Email: </strong><%= @user.email %>  
+        <% if current_user.already_friend?(@user.id) %>
+            <span class="badge badge-primary">
+                <%= ' You are friends' %>
+            </span>
+        <% else %>
+            <%= link_to 'Follow friend?', friendships_path(friend: @user), class: "btn btn-success", method: :post %>
+        <% end %>
+    </div>
+</div>
+<p></p>
+<% if !@tracked_stocks.empty? %>
+    <%= render 'stocks/list' %>
+<% else %>
+    <span class="badge badge-primary">
+        <%=  'This user currently not tracking any stocks' %>
+    </span>
+<% end %>
