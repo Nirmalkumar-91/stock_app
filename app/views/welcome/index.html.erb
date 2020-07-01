@@ -1,2 +1,42 @@
 <h1>Welcome to Stock App</h1>
+<p></p>
+<p>Currently most active stocks are: </p>
+<div class="row">
+    <div class="col-sm-9">
+        <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+            <th scope="col">Ticker</th>
+            <th scope="col">Name</th>
+            <th scope="col">Last_Price</th>
+            <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @list_stock.each do |stock| %>
+                <tr>
+                    <th scope="row"><%= stock.symbol %></th>
+                    <td><%= stock.company_name %></td>
+                    <td><%= stock.latest_price %></td>
+                    <td>
+                        <% if !user_signed_in? %>
+                           <%= link_to 'Add to portfolio', user_session_path, class: "btn btn-outline-success" %>
+                        <% elsif current_user.can_track_stock?(stock.symbol) %>
+                           <%= link_to 'Add to portfolio', user_stocks_path(user: current_user, stock: stock.symbol), class: "btn btn-success", method: :post %>
+                        <% else %>
+                                You are already tracking
+                                <% if !current_user.under_stock_limit? && !current_user.stock_alredy_tracked?(stock.symbol) %>
+                                    10 stocks
+                                <% end %>
+                                <% if current_user.stock_alredy_tracked?(stock.symbol) %>
+                                    this stock
+                                <% end %>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+        </table>
+    </div>
+</div>
 
